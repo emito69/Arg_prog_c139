@@ -22,6 +22,8 @@ public abstract class Persona {
     @Column(name = "fechaNacim", nullable = false)
     private Timestamp fechaNacim;
 
-    @Column(name = "infoContacto", nullable = false, length = 45)
-    private String infoContacto;
+    //@Column(name = "infoContacto", nullable = false, length = 45)
+    @OneToOne
+    @JoinColumn(name="infoContacto_id", referencedColumnName="id")
+    private InfoContacto infoContacto;
 }

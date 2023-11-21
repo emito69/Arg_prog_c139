@@ -6,7 +6,7 @@ import ap.persistencia.EntityManagerUtil;
 import javax.persistence.EntityManager;
 
 
-public class sistema {
+public class Sistema {
 
     public static void main(String[] args) {
 
