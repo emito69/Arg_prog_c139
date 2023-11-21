@@ -8,12 +8,14 @@ import java.util.List;
 @Data   // Getters y Setters
 @Entity
 @Table(name="cliente")
-public class Cliente {
+public class Cliente extends Persona{
 
+    /* LE SACO ESTE ID PORQUE PERSONA YA TIENE 1
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, length = 11)
     private int id;   //acá usar Long no long
+    */
 
     @Column(name = "razon_social", nullable = false, length = 45)
     //@NotBlank (message = "La razon social no puede estar vacía")
