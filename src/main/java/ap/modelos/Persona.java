@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data   // Getters y Setters
@@ -24,7 +25,8 @@ public abstract class Persona {
     private String apellido;
 
     @Column(name = "fechaNacim", nullable = false)
-    private Timestamp fechaNacim;
+    //private Timestamp fechaNacim;
+    private Date fechaNacim;
 
     //@Column(name = "infoContacto", nullable = false, length = 45)
     @OneToOne
