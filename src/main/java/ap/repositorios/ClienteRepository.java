@@ -18,9 +18,28 @@ public class ClienteRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public void insertar(Cliente cliente) {
+    public EntityManager getEm() {
+        return em;
+    }
 
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+
+    public List<Cliente> buscarClientes() {
+        return em.createQuery("select c from Cliente c", Cliente.class).getResultList();
+    }
+
+    public Cliente buscarUnId(int id) {
+        return em.find(Cliente.class, id);
+    }
+
+    public void insertar(Cliente cliente) {
         em.persist(cliente);
+    }
+
+    public void actualizar(Cliente cliente) {
+        em.merge(cliente);
     }
 
 }

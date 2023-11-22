@@ -1,6 +1,7 @@
 
 package ap.app;
 
+import ap.controladores.ClienteController;
 import ap.modelos.Cliente;
 import ap.modelos.InfoContacto;
 import ap.modelos.Servicio;
@@ -12,12 +13,14 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Sistema {
 
     public static void main(String[] args) {
 
+        /*
         EntityManager em = EntityManagerUtil.getEntityManager();
         // System.out.println("EntityManager class ==> " + em.getClass().getCanonicalName());
         EntityTransaction tx = em.getTransaction();
@@ -49,8 +52,18 @@ public class Sistema {
         em.merge(cliente);
 
         tx.commit();
-
-
         System.out.println("Objeto guardado!!!");
+        */
+
+        EntityManager em = EntityManagerUtil.getEntityManager();
+
+        ClienteController cc = new ClienteController();
+        //seteando el entityManager al repository
+        cc.getCr().setEm(em);
+
+        Scanner scanner = new Scanner(System.in);
+
+        cc.agregarCliente(scanner);
+
     }
 }
