@@ -65,5 +65,7 @@ public class Sistema {
 
         cc.agregarCliente(scanner);
 
+        cc.mostrarClientes();
+
     }
 }
