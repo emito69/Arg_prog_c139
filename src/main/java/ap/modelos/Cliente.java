@@ -1,11 +1,15 @@
 package ap.modelos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data   // Getters y Setters
+@AllArgsConstructor     // Todos los Constructores (con todas las combinaciones posibles)
+@NoArgsConstructor
 @Entity
 @Table(name="cliente")
 public class Cliente extends Persona{
