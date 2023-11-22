@@ -38,5 +38,5 @@ build/
 ### Mac OS ###
 .DS_Store
 
-## EMI ##
-./src/main/resources/META-INF/persistence.xml
+### EMI ###
+/src/main/resources/META-INF/persistence.xml
