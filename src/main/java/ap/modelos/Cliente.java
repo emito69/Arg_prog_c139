@@ -25,6 +25,10 @@ public class Cliente {
     //@NotNull (message = "El cuit no puede estar vacía")
     private String cuit;
 
+    @Column(name = "nombre", nullable = false, length = 45)
+    //@NotBlank (message = "El cuit no puede estar vacía")
+    //@NotNull (message = "El cuit no puede estar vacía")
+    private String nombre;
     /* CREO QUE TIENE QUE SE MANYtoMANY
     @OneToMany(cascade = CascadeType.PERSIST)     // un Tecnico puede tener varias Especialidades // PERSIST: cuando creo un Tecnico debería crear en el mismo momento la/las Especialidades
     @JoinColumn(name="tecnico_id", referencedColumnName="id") //nombre de la foreing key en tabla Especialidad

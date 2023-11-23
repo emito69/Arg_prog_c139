@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Data   // Getters y Setters
 @Entity
 @Table(name="servicio")
@@ -17,6 +18,7 @@ public class Servicio {
 
     @ManyToMany(cascade = CascadeType.MERGE)   // varios Clientes pueden tener varios Servicios
     private List<Cliente> clientes;
+
 
     @OneToMany(cascade = CascadeType.PERSIST)     // un Servicio puede tenes varias Aplicaciones   // PERSIST: cuando creo Servicio debería crear en el mismo momento la/las Aplicaciones
     @JoinColumn(name="servicio_id", referencedColumnName="id") //nombre de la foreing key en tabla aplicaciones
