@@ -65,7 +65,16 @@ public class Sistema {
 
         cc.agregarCliente(scanner);
 
-        cc.mostrarClientes();
+       cc.mostrarClientes();
+
+        //Cliente cliente1 = cc.buscarClienteId(1);
+
+        //cliente1.setNombre("Nadia");
+
+        //cc.actualizarCliente(cliente1);
+
+        //cc.mostrarClientes();
+
 
     }
 }

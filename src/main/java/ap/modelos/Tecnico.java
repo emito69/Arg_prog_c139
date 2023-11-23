@@ -8,6 +8,7 @@ import java.util.List;
 @Data   // Getters y Setters
 @Entity
 @Table(name="tecnico")
+//@Table(name="persona")
 public class Tecnico extends Persona{
 
     /* LE SACO ESTE ID PORQUE PERSONA YA TIENE 1

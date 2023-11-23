@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="cliente")
+//@Table(name="persona")
 public class Cliente extends Persona{
 
     /* LE SACO ESTE ID PORQUE PERSONA YA TIENE 1

@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 @Data   // Getters y Setters
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Table(name="persona")
 public abstract class Persona {
 
     @Id
@@ -28,8 +29,23 @@ public abstract class Persona {
     //private Timestamp fechaNacim;
     private Date fechaNacim;
 
-    //@Column(name = "infoContacto", nullable = false, length = 45)
+    @Column(name = "email", nullable = true, length = 45)
+    private String email;
+
+    @Column(name = "telefono", nullable = true, length = 45)
+    private String telefono;
+
+    @Column(name = "celular", nullable = true, length = 45)
+    private String celular;
+
+    @Column(name = "direccion", nullable = true, length = 255)
+    private String direccion;
+
+    /*
+    //@Column(name = "infoContacto")
     @OneToOne
     @JoinColumn(name="infoContacto_id", referencedColumnName="id")
     private InfoContacto infoContacto;
+    */
+
 }

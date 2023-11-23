@@ -26,6 +26,9 @@ public class InfoContacto {
     @Column(name = "direccion", nullable = false, length = 255)
     private String direccion;
 
+    /*
     @OneToOne(mappedBy="infoContacto")
+    //@JoinColumn(name="persona_id", referencedColumnName="id")
     private Persona persona;
+    */
 }

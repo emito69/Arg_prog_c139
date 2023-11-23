@@ -2,7 +2,9 @@ package ap.controladores;
 
 import ap.app.Util;
 import ap.modelos.Cliente;
+import ap.modelos.InfoContacto;
 import ap.repositorios.ClienteRepository;
+import ap.repositorios.InfoContactoRepository;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -13,6 +15,9 @@ import java.util.Scanner;
 public class ClienteController {
 
     private ClienteRepository cr;
+    //private InfoContactoRepository ir;
+    //private InfoContactoController ic;
+
 
     public ClienteRepository getCr() {
         return cr;
@@ -23,7 +28,9 @@ public class ClienteController {
     }
 
     public ClienteController() {
+
         this.cr = new ClienteRepository();
+        //this.ic = new InfoContactoController();
     }
 
     public void agregarCliente(Scanner scanner) {
@@ -54,12 +61,39 @@ public class ClienteController {
         cliente.setRazon_social(razonSocialtCliente);
         cliente.setFechaNacim(fechaNacCliente);
 
+        /* EMILIMINE CLASE infoContacto
+        System.out.print("Ingrese dirección del cliente: ");
+        String direCliente = scanner.next();
+        System.out.print("Ingrese el email del cliente: ");
+        String emailCliente = scanner.next();
+        System.out.print("Ingrese el teléfono del cliente: ");
+        String teleCliente = scanner.next();
+        System.out.print("Ingrese el celular del cliente: ");
+        String celularCliente = scanner.next();
+
+        InfoContacto infoContacto = new InfoContacto();
+
+        infoContacto.setCelular(celularCliente);
+        infoContacto.setTelefono(teleCliente);
+        infoContacto.setDireccion(direCliente);
+        infoContacto.setEmail(emailCliente);
+
+        ic.getIr().setEm(cr.getEm());
+        ic.agregarInfoContacto(infoContacto);
+        cliente.setInfoContacto(infoContacto);
+        */
 
         cr.getEm().getTransaction().begin();
         cr.insertar(cliente);
         cr.getEm().getTransaction().commit();
 
         System.out.println("Cliente agregado con éxito.\n");
+    }
+
+    public void actualizarCliente(Cliente cliente) {
+        cr.getEm().getTransaction().begin();
+        cr.actualizar(cliente);
+        cr.getEm().getTransaction().commit();
     }
 
     public void mostrarClientes() {
