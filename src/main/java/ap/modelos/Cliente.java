@@ -21,12 +21,12 @@ public class Cliente extends Persona{
     private int id;   //acá usar Long no long
     */
 
-    @Column(name = "razon_social", nullable = false, length = 45)
+    @Column(name = "razon_social")
     //@NotBlank (message = "La razon social no puede estar vacía")
     //@NotNull (message = "La razon social no puede estar vacía")
     private String razon_social;
 
-    @Column(name = "cuit", nullable = false, length = 45)
+    @Column(name = "cuit")
     //@NotBlank (message = "El cuit no puede estar vacía")
     //@NotNull (message = "El cuit no puede estar vacía")
     private String cuit;

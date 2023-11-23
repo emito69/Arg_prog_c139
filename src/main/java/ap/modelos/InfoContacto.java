@@ -11,19 +11,19 @@ public class InfoContacto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, length = 11)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "email", nullable = false, length = 45)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "telefono", nullable = false, length = 45)
+    @Column(name = "telefono")
     private String telefono;
 
-    @Column(name = "celular", nullable = false, length = 45)
+    @Column(name = "celular")
     private String celular;
 
-    @Column(name = "direccion", nullable = false, length = 255)
+    @Column(name = "direccion")
     private String direccion;
 
     @OneToOne(mappedBy="infoContacto")

@@ -15,16 +15,16 @@ public abstract class Persona {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_Persona", nullable = false, length = 11)
+    @Column(name = "id_Persona")
     private int id;   //acá usar Long no long
 
-    @Column(name = "nombre", nullable = false, length = 45)
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "apellido", nullable = false, length = 45)
+    @Column(name = "apellido")
     private String apellido;
 
-    @Column(name = "fechaNacim", nullable = false)
+    @Column(name = "fechaNacim")
     //private Timestamp fechaNacim;
     private Date fechaNacim;
 

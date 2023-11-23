@@ -13,7 +13,7 @@ public class Problema {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, length = 11)
+    @Column(name = "id")
     private int id;   //acá usar Long no long
 
     private Tipo tipo;

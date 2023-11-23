@@ -20,10 +20,10 @@ public class Sistema {
 
     public static void main(String[] args) {
 
-        /*
+
         EntityManager em = EntityManagerUtil.getEntityManager();
-        // System.out.println("EntityManager class ==> " + em.getClass().getCanonicalName());
-        EntityTransaction tx = em.getTransaction();
+        System.out.println("EntityManager class ==> " + em.getClass().getCanonicalName());
+       /* EntityTransaction tx = em.getTransaction();
 
         tx.begin();
 
@@ -55,9 +55,9 @@ public class Sistema {
         System.out.println("Objeto guardado!!!");
         */
 
-        EntityManager em = EntityManagerUtil.getEntityManager();
+        //EntityManager em = EntityManagerUtil.getEntityManager();
 
-        ClienteController cc = new ClienteController();
+       /* ClienteController cc = new ClienteController();
         //seteando el entityManager al repository
         cc.getCr().setEm(em);
 
@@ -65,7 +65,7 @@ public class Sistema {
 
         cc.agregarCliente(scanner);
 
-        cc.mostrarClientes();
+        cc.mostrarClientes();*/
 
     }
 }
