@@ -11,7 +11,7 @@ public class Aplicacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable=false)
     private int id;   //acá usar Long no long
 
     @Column(name = "denominacion", nullable = false, length = 45)
@@ -19,4 +19,10 @@ public class Aplicacion {
     //@NotNull (message = "La denominacion no puede estar vacía")
     private String denominacion;
 
+    @Override
+    public String toString() {
+        return "Aplicacion{" +
+                "denominacion='" + denominacion + '\'' +
+                '}';
+    }
 }

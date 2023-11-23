@@ -19,4 +19,10 @@ public class SistemaOperativo {
     //@NotNull (message = "La denominacion no puede estar vacía")
     private String denominacion;
 
+    @Override
+    public String toString() {
+        return "SistemaOperativo{" +
+                "denominacion='" + denominacion + '\'' +
+                '}';
+    }
 }

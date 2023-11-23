@@ -1,10 +1,11 @@
 
 package ap.app;
 
+import ap.controladores.AplicacionController;
 import ap.controladores.ClienteController;
-import ap.modelos.Cliente;
-import ap.modelos.InfoContacto;
-import ap.modelos.Servicio;
+import ap.controladores.EspecialidadController;
+import ap.controladores.SistemaOperativoController;
+import ap.modelos.*;
 import ap.persistencia.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
@@ -21,8 +22,8 @@ public class Sistema {
     public static void main(String[] args) {
 
 
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        System.out.println("EntityManager class ==> " + em.getClass().getCanonicalName());
+        // EntityManager em = EntityManagerUtil.getEntityManager();
+        //System.out.println("EntityManager class ==> " + em.getClass().getCanonicalName());
        /* EntityTransaction tx = em.getTransaction();
 
         tx.begin();
@@ -67,5 +68,32 @@ public class Sistema {
 
         cc.mostrarClientes();*/
 
+
+        EntityManager em = EntityManagerUtil.getEntityManager();
+
+        AplicacionController ac = new AplicacionController();
+        //seteando el entityManager al repository
+        ac.getAr().setEm(em);
+        Scanner scanner = new Scanner(System.in);
+        ac.agregarAplciacion(scanner);
+        ac.mostrarAplicacion();
+        ArrayList<Aplicacion> listaA = ac.traerListaSitemasAplicaciones();
+
+        SistemaOperativoController sc = new SistemaOperativoController();
+        //seteando el entityManager al repository
+        sc.getSr().setEm(em);
+        Scanner scanner2 = new Scanner(System.in);
+        sc.agregarSistemaOperativo(scanner2);
+        sc.mostrarSistemasOperativos();
+
+        ArrayList<SistemaOperativo> listaS = sc.traerListaSitemasOperativos();
+
+        EspecialidadController es = new EspecialidadController();
+        es.getEr().setEm(em);
+        es.agregarEspecialidadTecnicoVacio(listaS, listaA);
     }
-}
+
+
+
+
+    }
