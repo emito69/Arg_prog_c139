@@ -22,7 +22,8 @@ public class Aplicacion {
     @Override
     public String toString() {
         return "Aplicacion{" +
-                "denominacion='" + denominacion + '\'' +
+                "id=" + id +
+                ", denominacion='" + denominacion + '\'' +
                 '}';
     }
 }

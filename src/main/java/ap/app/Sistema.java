@@ -90,7 +90,10 @@ public class Sistema {
 
         EspecialidadController es = new EspecialidadController();
         es.getEr().setEm(em);
-        es.agregarEspecialidadTecnicoVacio(listaS, listaA);
+
+        Scanner scanner3 = new Scanner(System.in);
+
+    es.agregarEspecialidadTecnicoVacio(scanner3);
     }
 
 
