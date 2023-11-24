@@ -23,7 +23,7 @@ public class Tecnico extends Persona{
     private List<Especialidad> especialidades;
     */
 
-    @ManyToMany(mappedBy="tecnicos", cascade = CascadeType.MERGE)   // varios Tecnicos pueden tener varias Especialidades
+    @ManyToMany(targetEntity = Especialidad.class, cascade= CascadeType.ALL, fetch=FetchType.LAZY )   // varios Tecnicos pueden tener varias Especialidades
     private List<Especialidad> especialidades;
 
     @ManyToMany(mappedBy="tecnicos", cascade = CascadeType.MERGE)   // varios Tecnicos pueden aparecer en varios Incidentes

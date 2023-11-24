@@ -3,6 +3,7 @@ package ap.modelos;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data   // Getters y Setters
 @Entity
@@ -19,6 +20,9 @@ public class SistemaOperativo {
     //@NotNull (message = "La denominacion no puede estar vacía")
     private String denominacion;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="sistOp_id", referencedColumnName="id")
+    private List<Especialidad> especialidades;
     @Override
     public String toString() {
         return "SistemaOperativo{" +

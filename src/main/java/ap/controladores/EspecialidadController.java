@@ -12,6 +12,23 @@ import java.util.Scanner;
 
 public class EspecialidadController {
     private AplicacionController ap;
+
+    public AplicacionController getAp() {
+        return ap;
+    }
+
+    public void setAp(AplicacionController ap) {
+        this.ap = ap;
+    }
+
+    public SistemaOperativoController getSc() {
+        return sc;
+    }
+
+    public void setSc(SistemaOperativoController sc) {
+        this.sc = sc;
+    }
+
     private SistemaOperativoController sc;
     private EspecialidadRepository er;
 

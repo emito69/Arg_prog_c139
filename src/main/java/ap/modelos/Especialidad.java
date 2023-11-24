@@ -17,13 +17,16 @@ public class Especialidad {
 
     private String nombre;
 
+    @ManyToOne
+    @JoinColumn(name="sistOp_id", referencedColumnName="id")
     private SistemaOperativo sistemaOperativo;
+    @ManyToOne
+    @JoinColumn(name="aplicacion_id", referencedColumnName="id")
     private Aplicacion aplicacion;
 
 
-    @ManyToMany(mappedBy="especialidades", cascade = CascadeType.MERGE)
-
-    private List<Tecnico>tecnicos;
+    @ManyToMany(mappedBy="especialidades", cascade= CascadeType.ALL, fetch=FetchType.LAZY)
+     private List<Tecnico>tecnicos;
 
     public Especialidad(
                         Aplicacion aplicacion,
