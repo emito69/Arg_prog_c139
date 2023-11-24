@@ -24,9 +24,9 @@ public class Tecnico extends Persona{
     private List<Especialidad> especialidades;
     */
 
-    @ManyToMany(mappedBy="tecnicos", cascade = CascadeType.MERGE)   // varios Tecnicos pueden tener varias Especialidades
+    @ManyToMany(mappedBy="tecnicos", cascade = CascadeType.ALL)   // varios Tecnicos pueden tener varias Especialidades
     private List<Especialidad> especialidades;
 
-    @ManyToMany(mappedBy="tecnicos", cascade = CascadeType.MERGE)   // varios Tecnicos pueden aparecer en varios Incidentes
+    @ManyToMany(mappedBy="tecnicos", cascade = CascadeType.ALL)   // varios Tecnicos pueden aparecer en varios Incidentes
     private List<Incidente> incidentes;
 }
