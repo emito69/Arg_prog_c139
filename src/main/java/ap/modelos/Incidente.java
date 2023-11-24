@@ -21,19 +21,19 @@ public class Incidente {
     //@NotNull (message = "La fechaCreacion no puede estar vacía")
     private Timestamp fechaCreacion;
 
-    @ManyToOne(cascade = CascadeType.MERGE)     // cada Incidente es por un Servicio
+    @ManyToOne(cascade = CascadeType.ALL)     // cada Incidente es por un Servicio
     @JoinColumn(
             name="servicio_id",
             referencedColumnName="id")  //nombre de la foreing key en tabla Incidente
     private Servicio servicio;
 
-    @ManyToMany(cascade = CascadeType.MERGE)   // varios Incidente pueden tener los mismo Consumidores
+    @ManyToMany(cascade = CascadeType.ALL)   // varios Incidente pueden tener los mismo Consumidores
     private List<Cliente> clientes;
 
-    @ManyToMany(cascade = CascadeType.MERGE)   // varios Incidente pueden tener los mismo Prestadores
+    @ManyToMany(cascade = CascadeType.ALL)   // varios Incidente pueden tener los mismo Prestadores
     private List<Tecnico> tecnicos;
 
-    @ManyToMany(cascade = CascadeType.MERGE)   // varios Incidente pueden tener los mismo Problemas
+    @ManyToMany(cascade = CascadeType.ALL)   // varios Incidente pueden tener los mismo Problemas
     private List<Problema> problemas;
 
     @Column(name = "descripcion", nullable = false, length = 511)

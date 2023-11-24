@@ -19,6 +19,6 @@ public class Problema {
     private Tipo tipo;
     private Timestamp tiempoResolucion;
 
-    @ManyToMany(mappedBy="problemas", cascade = CascadeType.MERGE)   // varios Tecnicos pueden aparecer en varios Incidentes
+    @ManyToMany(mappedBy="problemas", cascade = CascadeType.ALL)   // varios Tecnicos pueden aparecer en varios Incidentes
     private List<Incidente> incidentes;
 }
