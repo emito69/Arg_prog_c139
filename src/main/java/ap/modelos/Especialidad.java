@@ -12,37 +12,26 @@ public class Especialidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, length = 11)
     private int id;   //acá usar Long no long
 
     private String nombre;
 
-    @ManyToOne
-    @JoinColumn(name="sistOp_id", referencedColumnName="id")
-    private SistemaOperativo sistemaOperativo;
-    @ManyToOne
-    @JoinColumn(name="aplicacion_id", referencedColumnName="id")
+    @ManyToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Tecnico>tecnicos;
+
+    //una especialidad solo puede tener un sistema operativo y una aplicacion
+
+    @ManyToOne(targetEntity = Aplicacion.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Aplicacion aplicacion;
 
+    @ManyToOne(targetEntity = SistemaOperativo.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+     private SistemaOperativo sistemaOperativo;
 
-    @ManyToMany(mappedBy="especialidades", cascade= CascadeType.ALL, fetch=FetchType.LAZY)
-     private List<Tecnico>tecnicos;
 
-    public Especialidad(
-                        Aplicacion aplicacion,
-                        SistemaOperativo sistOperativo) {
-        this.tecnicos = new ArrayList<>();
-        this.aplicacion=aplicacion;
-        this.sistemaOperativo = sistOperativo;
-    }
-    public Especialidad(List<Tecnico> tecnicos,
-            Aplicacion aplicacion,
-            SistemaOperativo sistOperativo) {
-        this.tecnicos =tecnicos;
-        this.aplicacion=aplicacion;
-        this.sistemaOperativo = sistOperativo;
-    }
-    public Especialidad(){
-        this.tecnicos=new ArrayList<>();
+    public Especialidad()
+    {
+        //this.tecnicos=new ArrayList<>();
+
     }
 }

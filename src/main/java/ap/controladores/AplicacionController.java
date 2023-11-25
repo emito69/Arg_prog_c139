@@ -42,7 +42,7 @@ public class AplicacionController {
 
         System.out.println("aplicacion agregado con éxito.\n");
     }
-    public ArrayList<Aplicacion> traerListaSitemasAplicaciones() {
+    public ArrayList<Aplicacion> traerListaAplicaciones() {
         List<Aplicacion> lista=ar.buscarAplcaciones();
         ArrayList<Aplicacion>arrayListaAplicaciones =new ArrayList<Aplicacion>(lista);
         return arrayListaAplicaciones ;
@@ -51,7 +51,7 @@ public class AplicacionController {
     public void mostrarAplicacion() {
         System.out.println("Aplicaciones: ");
         ar.buscarAplcaciones().forEach(
-                aplicacion-> System.out.println(aplicacion.getDenominacion()));
+                aplicacion-> System.out.println(aplicacion.getDenominacion() +" "+aplicacion.getId()));
         System.out.println();
     }
 

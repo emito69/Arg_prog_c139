@@ -53,7 +53,7 @@ public class SistemaOperativoController {
     public void mostrarSistemasOperativos() {
         System.out.println("Sistemas Operativos: ");
         sr.buscarSistemasOperativos().forEach(
-              sistemaOperativo -> System.out.println(sistemaOperativo.toString()));
+              sistemaOperativo -> System.out.println(sistemaOperativo.getDenominacion()+" "+sistemaOperativo.getId()));
         System.out.println();
     }
 

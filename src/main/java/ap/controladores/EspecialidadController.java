@@ -7,30 +7,14 @@ import ap.repositorios.ClienteRepository;
 import ap.repositorios.EspecialidadRepository;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class EspecialidadController {
-    private AplicacionController ap;
 
-    public AplicacionController getAp() {
-        return ap;
-    }
-
-    public void setAp(AplicacionController ap) {
-        this.ap = ap;
-    }
-
-    public SistemaOperativoController getSc() {
-        return sc;
-    }
-
-    public void setSc(SistemaOperativoController sc) {
-        this.sc = sc;
-    }
-
-    private SistemaOperativoController sc;
     private EspecialidadRepository er;
+
 
     public EspecialidadRepository getEr() {
         return er;
@@ -44,36 +28,33 @@ public class EspecialidadController {
         this.er = new EspecialidadRepository();
     }
 
-    public void agregarEspecialidadTecnicoVacio(Scanner scanner)
+    //recibe del Front una lista de aplicaciones, sistemas operativos
+    public void agregarEspecialidadTecnicoVacio(Scanner scanner,
+                                                ArrayList<Aplicacion>apli,
+                                                ArrayList<SistemaOperativo>sistOp)
 
-    {System.out.print("Ingrse el nombre de la especialidad: ");
+    {System.out.print("Ingrese el nombre de la especialidad: ");
      Especialidad esp = new Especialidad();
         String nombre = scanner.next();
         esp.setNombre(nombre);
 
+        System.out.print("Ingrese el id de la aplicacion: ");
+        int id = scanner.nextInt();
 
-        System.out.print("elija una Aplicacion para esta especialidad");
+        apli.forEach(aplicacion -> {
+            if (aplicacion.getId() == id) {
+                esp.setAplicacion(aplicacion);
+            }
+        });
 
+        System.out.print("Ingrese el id del sistema operativo: ");
+        int id2 = scanner.nextInt();
 
-        System.out.println("aplicaciones disponibles:");
-        ap.traerListaSitemasAplicaciones().forEach(
-                aplicacion -> System.out.println(aplicacion.getDenominacion()));
-
-        int aplicacion1 = scanner.nextInt();
-        esp.setAplicacion(ap.buscarAplcaconId(aplicacion1));
-
-
-
-        System.out.print("elija una Sistema Operativo para esta especialidad");
-
-
-        System.out.println("Sistemas Operativos disponibles:");
-        sc.traerListaSitemasOperativos().forEach(
-                so -> System.out.println(so.getDenominacion()));
-
-        int so= scanner.nextInt();
-        esp.setSistemaOperativo(sc.buscarSistemaOperativoId(so));
-
+        sistOp.forEach(so -> {
+            if (so.getId() == id2) {
+                esp.setSistemaOperativo(so);
+            }
+        });
 
         er.getEm().getTransaction().begin();
         er.insertar(esp);
@@ -81,6 +62,7 @@ public class EspecialidadController {
 
         System.out.println("especialidad agregado con éxito.\n");
     }
+
 
 
 

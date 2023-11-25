@@ -17,11 +17,11 @@ public class EspecialidadRepository {
     public void setEm(EntityManager em) {
         this.em = em;
     }
-   /*public List<Especialidad> buscarEspecialidad() {
+   public List<Especialidad> buscarListaEspecialidad() {
 
       return  em.createQuery("select e from Especialidad e" ,Especialidad.class).getResultList();
 
-    }*/
+    }
    public Especialidad buscarUna(int numero) {
 
        return em.find(Especialidad.class, numero);

@@ -13,12 +13,12 @@ public class Problema {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, length = 11)
     private int id;   //acá usar Long no long
 
     private Tipo tipo;
     private Timestamp tiempoResolucion;
 
-    @ManyToMany(mappedBy="problemas", cascade = CascadeType.MERGE)   // varios Tecnicos pueden aparecer en varios Incidentes
+    @ManyToMany(mappedBy="problemas", cascade = CascadeType.ALL)   // varios Tecnicos pueden aparecer en varios Incidentes
     private List<Incidente> incidentes;
 }

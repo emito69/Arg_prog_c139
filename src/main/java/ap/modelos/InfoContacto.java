@@ -8,24 +8,26 @@ import javax.persistence.*;
 @Entity
 @Table(name="infoContacto")
 public class InfoContacto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, length = 11)
     private int id;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 45)
     private String email;
 
-    @Column(name = "telefono")
+    @Column(name = "telefono", nullable = false, length = 45)
     private String telefono;
 
-    @Column(name = "celular")
+    @Column(name = "celular", nullable = false, length = 45)
     private String celular;
 
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false, length = 255)
     private String direccion;
 
+    /*
     @OneToOne(mappedBy="infoContacto")
+    //@JoinColumn(name="persona_id", referencedColumnName="id")
     private Persona persona;
+    */
 }
