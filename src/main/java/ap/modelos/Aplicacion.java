@@ -3,6 +3,7 @@ package ap.modelos;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data   // Getters y Setters
 @Entity
@@ -18,5 +19,8 @@ public class Aplicacion {
     //@NotBlank (message = "La denominacion no puede estar vacía")
     //@NotNull (message = "La denominacion no puede estar vacía")
     private String denominacion;
+
+    @OneToMany
+    private List<Servicio> servicios;
 
 }
