@@ -105,7 +105,7 @@ public class ClienteController {
 
     public Cliente buscarClienteId(int nroCliente) {
         Cliente cliente = cr.buscarUnId(nroCliente);
-        System.out.println(cliente);
+        //System.out.println(cliente);
         return cliente;
     }
 

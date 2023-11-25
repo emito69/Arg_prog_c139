@@ -12,6 +12,7 @@
     <class>ap.modelos.Especialidad</class>
     <class>ap.modelos.Incidente</class>
     <class>ap.modelos.InfoContacto</class>
+    <class>ap.modelos.Persona</class>
     <class>ap.modelos.Problema</class>
     <class>ap.modelos.Servicio</class>
     <class>ap.modelos.SistemaOperativo</class>

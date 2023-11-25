@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data   // Getters y Setters
 @AllArgsConstructor     // Todos los Constructores (con todas las combinaciones posibles)
-@NoArgsConstructor
+//@NoArgsConstructor
 @Entity
 @Table(name="cliente")
 //@Table(name="persona")
@@ -38,9 +39,28 @@ public class Cliente extends Persona{
     private List<Servicio> servicios;
     */
 
+    /* tampoco me anduvo así -- prueba con Unidireccional
     @ManyToMany(mappedBy="clientes", cascade = CascadeType.ALL)   // varios Clientes pueden tener varios Servicios
     private List<Servicio> servicios;
+    */
+
+    @ManyToMany   // varios Clientes pueden tener varios Servicios
+    @JoinTable(
+            name = "servicio_cliente",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "servicio_id"))
+    private List<Servicio> servicios;
+
 
     @ManyToMany(mappedBy="clientes", cascade = CascadeType.ALL)   // varios Clientes pueden aparecer en varios Incidentes
     private List<Incidente> incidentes;
+
+    public Cliente(){
+        this.servicios = new ArrayList<Servicio>();
+        //this.incidentes = new ArrayList<Incidente>();
+    }
+
+    public String toString() {
+        return this.getId()+"-"+this.getNombre()+"-"+this.servicios.isEmpty()+"-"+this.incidentes;
+    }
 }
