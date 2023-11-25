@@ -120,10 +120,11 @@ public class Sistema {
                 case 3:
                     ArrayList<SistemaOperativo> listaS = sc.traerListaSitemasOperativos();
                     ArrayList<Aplicacion> listaA = ac.traerListaAplicaciones();
-                    ec.agregarEspecialidadTecnicoVacio(scanner,listaA,listaS);
+                    ec.agregarEspecialidad(scanner,listaA,listaS);
                     break;
                 case 4:
-                    tc.agregarTecnico(scanner);
+                    ArrayList<Especialidad> listac = ec.traerListaEspecialidades();
+                    tc.agregarTecnico(scanner,listac);
                     break;
                 case 5:
 

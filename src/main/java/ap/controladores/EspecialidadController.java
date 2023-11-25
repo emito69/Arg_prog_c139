@@ -29,7 +29,7 @@ public class EspecialidadController {
     }
 
     //recibe del Front una lista de aplicaciones, sistemas operativos
-    public void agregarEspecialidadTecnicoVacio(Scanner scanner,
+    public void agregarEspecialidad(Scanner scanner,
                                                 ArrayList<Aplicacion>apli,
                                                 ArrayList<SistemaOperativo>sistOp)
 
@@ -76,17 +76,14 @@ public class EspecialidadController {
 
 
 
+    public ArrayList<Especialidad> traerListaEspecialidades() {
+        List<Especialidad> lista=er.buscarListaEspecialidad();
+        ArrayList<Especialidad>arrayListaEspecialidades =new ArrayList<Especialidad>(lista);
+        return arrayListaEspecialidades;
+    }
 
 
 
-
-
-   /* public void mostrarClientes() {
-        System.out.println("Especialidad: ");
-        er.buscarUna().forEach(
-                cliente -> System.out.println(especialidad));
-        System.out.println();
-    }*/
 
     public Especialidad buscarEspecialidadId(int nroEspecialidad) {
         Especialidad especialidad = er.buscarUna(nroEspecialidad);
