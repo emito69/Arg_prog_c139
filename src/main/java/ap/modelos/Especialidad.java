@@ -1,11 +1,15 @@
 package ap.modelos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data   // Getters y Setters
+@AllArgsConstructor     // Todos los Constructores (con todas las combinaciones posibles)
+@NoArgsConstructor
 @Entity
 @Table(name="especialidad")
 public class Especialidad {
@@ -15,14 +19,20 @@ public class Especialidad {
     @Column(name = "id", nullable = false, length = 11)
     private int id;   //acá usar Long no long
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="sistemaoperativo_id", referencedColumnName="id")
+    private SistemaOperativo sistemaoperativo;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="aplicacion_id", referencedColumnName="id")
+    private Aplicacion aplicacion;
+
+    /*
     @ManyToMany(cascade = CascadeType.ALL)   // varios Tecnicos pueden tener varias Especialidades
     private List<Tecnico> tecnicos;
+    */
 
-    @OneToMany(cascade = CascadeType.ALL)     // una Especialidad puede tenes varias Aplicaciones   // PERSIST: cuando creo Especialidad debería crear en el mismo momento la/las Aplicaciones
-    @JoinColumn(name="especialidad_id", referencedColumnName="id") //nombre de la foreing key en tabla aplicaciones
-    private List<Aplicacion> aplicaciones;
-
-    @OneToMany(cascade = CascadeType.ALL)     // una Especialidad puede tenes varios Sistemas_Operativos   // PERSIST: cuando creo Especialidad debería crear en el mismo momento la/las Aplicaciones
-    @JoinColumn(name="especialidad_id", referencedColumnName="id") //nombre de la foreing key en tabla sistema_operativos
-    private List<SistemaOperativo> sist_operativos;
+    public String toString() {
+        return this.getId()+"-"+this.sistemaoperativo+"-"+this.aplicacion;
+    }
 }

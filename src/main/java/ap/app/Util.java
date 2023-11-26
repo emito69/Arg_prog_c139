@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Util {
@@ -29,4 +32,24 @@ public class Util {
         return new java.sql.Date(date.getTime());
     }
 
+    public LocalDate convertToLocalDate(Date dateToConvert) {
+        return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
+    }
+
+    public java.sql.Date convertToDate(LocalDate dateToConvert) {
+        return java.sql.Date.valueOf(dateToConvert);
+    }
+
+    /*
+    public java.sql.Date formatToSQLDate(LocalDate fecha) {
+
+        try {
+            DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String formattedDate = fecha.format(pattern);
+            date = getSQLDate(formattedDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return date;
+    }*/
 }

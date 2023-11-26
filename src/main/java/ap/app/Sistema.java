@@ -1,14 +1,8 @@
 
 package ap.app;
 
-import ap.controladores.AplicacionController;
-import ap.controladores.ClienteController;
-import ap.controladores.ServicioController;
-import ap.controladores.SistemaOperativoController;
-import ap.modelos.Aplicacion;
-import ap.modelos.Cliente;
-import ap.modelos.InfoContacto;
-import ap.modelos.Servicio;
+import ap.controladores.*;
+import ap.modelos.*;
 import ap.persistencia.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
@@ -35,16 +29,34 @@ public class Sistema {
 
         AplicacionController apc = new AplicacionController();
         SistemaOperativoController soc = new SistemaOperativoController();
+
         ServicioController sc = new ServicioController();
         ClienteController cc = new ClienteController();
 
+        EspecialidadController ec = new EspecialidadController();
+        TecnicoController tc = new TecnicoController();
+
+        TipoController tic = new TipoController();
+        ProblemaController prc = new ProblemaController();
+
+        IncidenteController ic = new IncidenteController();
+
         //seteando el entityManager al repository
-        cc.getCr().setEm(em);
-        sc.getSr().setEm(em);
         apc.getSr().setEm(em);
         soc.getSr().setEm(em);
 
-        // completamos las tablas SistemaOperativo y Aplicacion
+        sc.getSr().setEm(em);
+        cc.getCr().setEm(em);
+
+        ec.getSr().setEm(em);
+        tc.getCr().setEm(em);
+
+        tic.getSr().setEm(em);
+        prc.getSr().setEm(em);
+
+        ic.getSr().setEm(em);
+
+        // completamos las tablas SistemaOperativo y Aplicacion y Tipo
         soc.agregarSistemaOperativo("WINDOWS");
         soc.agregarSistemaOperativo("MACOS");
         soc.agregarSistemaOperativo("LINUX");
@@ -53,65 +65,90 @@ public class Sistema {
         apc.agregarAplicacion("TANGO");
         apc.agregarAplicacion("SAP");
 
+        tic.agregarTipo("INSTALACION");
+        tic.agregarTipo("COFIGURACION");
+        tic.agregarTipo("ERROR");
+        tic.agregarTipo("OTRO");
+
         // completamos la tabla Servicio
-
-        //Servicio servicio1 = new Servicio();
-        //Servicio servicio2 = new Servicio();
-
-        //sc.agregarServicio(apc.buscarAplicacionId(2), soc.buscarSistemaOperativoId(2));
-        //sc.agregarServicio(apc.buscarAplicacionId(2), soc.buscarSistemaOperativoId(2));
-        //servicio1.getAplicaciones().add(apc.buscarAplicacionId(1));
-        //servicio1.getSist_operativos().add(soc.buscarSistemaOperativoId(1));
-
         sc.agregarServicio(apc.buscarAplicacionId(1), soc.buscarSistemaOperativoId(1));
         sc.agregarServicio(apc.buscarAplicacionId(2), soc.buscarSistemaOperativoId(1));
 
         Servicio servicio1 = sc.buscarServicioId(1);
         Servicio servicio2 = sc.buscarServicioId(2);
 
+        // completamos la tabla Especialidad
+        ec.agregarEspecialidad(apc.buscarAplicacionId(1), soc.buscarSistemaOperativoId(1));
+        ec.agregarEspecialidad(apc.buscarAplicacionId(2), soc.buscarSistemaOperativoId(2));
+
+        Especialidad especialidad1 = ec.buscarEspecialidadId(1);
+        Especialidad especialidad2 = ec.buscarEspecialidadId(2);
+
+        // completamos la tabla Problema
+        prc.agregarProblema(tic.buscarTipoId(1), 1);
+        prc.agregarProblema(tic.buscarTipoId(2), 2);
+        prc.agregarProblema(tic.buscarTipoId(3), 3);
+        prc.agregarProblema(tic.buscarTipoId(4), 4);
+
+        // SCANNER
         Scanner scanner = new Scanner(System.in);
+
+
 
         // CLIENTE 1, servicio1
         cc.agregarCliente(scanner);
-
-        //cc.buscarClienteId(1).getServicios().add(servicio1);
-
 
         Cliente cliente = cc.buscarClienteId(1);
 
         cliente.getServicios().add(servicio1);
         cliente.getServicios().add(servicio2);
 
-
         cc.actualizarCliente(cliente);
 
-        //System.out.println(cliente);
-
+        cliente = cc.buscarClienteId(1);
 
         cliente.getServicios().forEach(
                 servicio -> System.out.println(servicio));
         System.out.println();
 
-        /*
-        // CLIENTE 2, servicio1 + serivicio2
 
-        cc.agregarCliente(scanner);
-        cc.buscarClienteId(2).getServicios().add(servicio1);
-        cc.buscarClienteId(2).getServicios().add(servicio2);
+        // TECNICO 1, servicio2
+        tc.agregarTecnico(scanner);
 
-        cc.actualizarCliente(cc.buscarClienteId(1));
-        cc.actualizarCliente(cc.buscarClienteId(2));
+        Tecnico tecnico = tc.buscarTecnicoId(2);
 
-        cc.mostrarClientes();
-        */
-        //Cliente cliente1 = cc.buscarClienteId(1);
+        tecnico.getEspecialidades().add(especialidad1);
+        tecnico.getEspecialidades().add(especialidad2);
 
-        //cliente1.setNombre("Nadia");
+        tc.actualizarTecnico(tecnico);
 
-        //cc.actualizarCliente(cliente1);
+        tecnico = tc.buscarTecnicoId(2);
 
-        //cc.mostrarClientes();
+        tecnico.getEspecialidades().forEach(
+                especialidad -> System.out.println(especialidad));
+        System.out.println();
 
+        // INCIDENTE 1, cliente1, servicio1
+
+        ic.agregarIncidente(cc.buscarClienteId(1), cc.buscarClienteId(1).getServicios().get(1), prc.buscarProblemaId(3));
+
+        Incidente incidente = ic.buscarIncidenteId(1);
+
+        //incidente.getFechaCreacion();
+        //incidente.getTiempoResolucion();
+
+        System.out.println("ACAAAAA !!!!!!");
+        ic.mostrarIncidentes();
+
+        incidente.dameFechaFinalizacion();
+        incidente.setTiempoColchon(10);
+        incidente.dameFechaFinalizacion();
+
+        incidente.dameEstado();
+        incidente.setFinalizado(true);
+        incidente.actualizarEstado();
+        incidente.dameEstado();
+        incidente.actualizarEstado();
 
     }
 }

@@ -24,25 +24,10 @@ public class Cliente extends Persona{
     */
 
     @Column(name = "razon_social", nullable = false, length = 45)
-    //@NotBlank (message = "La razon social no puede estar vacía")
-    //@NotNull (message = "La razon social no puede estar vacía")
     private String razon_social;
 
     @Column(name = "cuit", nullable = false, length = 45)
-    //@NotBlank (message = "El cuit no puede estar vacía")
-    //@NotNull (message = "El cuit no puede estar vacía")
     private String cuit;
-
-    /* CREO QUE TIENE QUE SE MANYtoMANY
-    @OneToMany(cascade = CascadeType.PERSIST)     // un Tecnico puede tener varias Especialidades // PERSIST: cuando creo un Tecnico debería crear en el mismo momento la/las Especialidades
-    @JoinColumn(name="tecnico_id", referencedColumnName="id") //nombre de la foreing key en tabla Especialidad
-    private List<Servicio> servicios;
-    */
-
-    /* tampoco me anduvo así -- prueba con Unidireccional
-    @ManyToMany(mappedBy="clientes", cascade = CascadeType.ALL)   // varios Clientes pueden tener varios Servicios
-    private List<Servicio> servicios;
-    */
 
     @ManyToMany   // varios Clientes pueden tener varios Servicios
     @JoinTable(
@@ -51,8 +36,7 @@ public class Cliente extends Persona{
             inverseJoinColumns = @JoinColumn(name = "servicio_id"))
     private List<Servicio> servicios;
 
-
-    @ManyToMany(mappedBy="clientes", cascade = CascadeType.ALL)   // varios Clientes pueden aparecer en varios Incidentes
+    @OneToMany
     private List<Incidente> incidentes;
 
     public Cliente(){

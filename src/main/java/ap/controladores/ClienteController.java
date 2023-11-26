@@ -2,14 +2,9 @@ package ap.controladores;
 
 import ap.app.Util;
 import ap.modelos.Cliente;
-import ap.modelos.InfoContacto;
 import ap.repositorios.ClienteRepository;
-import ap.repositorios.InfoContactoRepository;
 
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class ClienteController {
@@ -30,7 +25,6 @@ public class ClienteController {
     public ClienteController() {
 
         this.cr = new ClienteRepository();
-        //this.ic = new InfoContactoController();
     }
 
     public void agregarCliente(Scanner scanner) {

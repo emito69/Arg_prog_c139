@@ -23,4 +23,7 @@ public class Aplicacion {
     @OneToMany
     private List<Servicio> servicios;
 
+    @OneToMany
+    private List<Especialidad> especialidades;
+
 }

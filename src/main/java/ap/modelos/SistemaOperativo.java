@@ -23,4 +23,8 @@ public class SistemaOperativo {
     @OneToMany
     private List<Servicio> servicios;
 
+    @OneToMany
+    private List<Especialidad> especialidades;
+
+
 }
