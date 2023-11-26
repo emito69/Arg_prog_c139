@@ -17,6 +17,7 @@
     <class>ap.modelos.Servicio</class>
     <class>ap.modelos.SistemaOperativo</class>
     <class>ap.modelos.Tecnico</class>
+    <class>ap.modelos.Tipo</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ap_tp_integrador?serverTimezone=UTC"/>
