@@ -16,22 +16,20 @@ public class RESUELTO extends Estado{
     public Date dameFechaFinalizacion(Incidente incidente) {
         Util util = new Util();
 
-        LocalDate fechaCreacionL = util.convertToLocalDate(incidente.getFechaCreacion());
+        LocalDate fechaFinalizadoL = util.convertToLocalDate(incidente.getFechaFinalizado());
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        LocalDate fechaFinalizacionL = fechaCreacionL.plus(incidente.getTiempoResolucion()).plus(incidente.getTiempoColchon());
-
-        System.out.println(fechaFinalizacionL);
+        System.out.println("Incidente resuelto en fecha: "+ fechaFinalizadoL);
         //System.out.println(fechaFinalizacionL.format(dateTimeFormatter));
 
-        return util.convertToDate(fechaFinalizacionL);
+        return util.convertToDate(fechaFinalizadoL);
     }
 
     @Override
     public void actualizar(Incidente incidente) {
         if (incidente.isFinalizado()){
-            System.out.println("EL INCIDENTE YA HA SIDO RESUELTO");;
+            System.out.println("El incidente ya ha sido resuelto en fecha: "+ incidente.getFechaFinalizado());;
         }
     }
 

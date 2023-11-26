@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
 @Data   // Getters y Setters
 @Entity
@@ -72,6 +73,9 @@ public class Incidente {
     @Column(name = "finalizado", nullable = false)
     private boolean finalizado = false;
 
+    @Column(name = "fechaFinalizado", nullable = true, length = 45)
+    private Date fechaFinalizado;
+
     @Column(name = "comentario_tec", nullable = true, length = 511)
 
     public String toString() {
@@ -83,22 +87,6 @@ public class Incidente {
 
 
     public Date dameFechaFinalizacion (){
-
-        /*
-        Util util = new Util();
-
-        LocalDate fechaCreacionL = util.convertToLocalDate(this.fechaCreacion);
-
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        LocalDate fechaFinalizacionL = fechaCreacionL.plus(this.tiempoResolucion).plus(this.tiempoColchon);
-
-        System.out.println(fechaFinalizacionL);
-        //System.out.println(fechaFinalizacionL.format(dateTimeFormatter));
-
-        return util.convertToDate(fechaFinalizacionL);
-        */
-
         return estado.dameFechaFinalizacion(this);
     }
 
@@ -113,4 +101,20 @@ public class Incidente {
     public void setTiempoColchon(int dias) {
         this.tiempoColchon = Period.ofDays(dias);
     }
+
+    public void setFinalizado() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese fecha de finalización del Incidente (dd/MM/yyyy): ");
+        String fecha= scanner.next();
+
+        Util util = new Util();
+
+        this.fechaFinalizado =  util.getSQLDate(fecha);
+
+        this.finalizado = true;
+    }
+
+
 }

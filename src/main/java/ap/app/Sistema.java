@@ -134,21 +134,19 @@ public class Sistema {
 
         Incidente incidente = ic.buscarIncidenteId(1);
 
-        //incidente.getFechaCreacion();
-        //incidente.getTiempoResolucion();
-
         System.out.println("ACAAAAA !!!!!!");
         ic.mostrarIncidentes();
 
-        incidente.dameFechaFinalizacion();
+        incidente.dameFechaFinalizacion(); // la fecah de finalización tentativa es la de inicio + tiempo + colchon
         incidente.setTiempoColchon(10);
-        incidente.dameFechaFinalizacion();
+        incidente.dameFechaFinalizacion();  // la fecah de finalización tentativa es la de inicio + tiempo + colchon
 
-        incidente.dameEstado();
-        incidente.setFinalizado(true);
-        incidente.actualizarEstado();
-        incidente.dameEstado();
-        incidente.actualizarEstado();
+        incidente.dameEstado();     // con estado inicial INGRESADO
+        incidente.setFinalizado();  // EL Técnico indica que ya resolvió el Incidente, le pide fecha real de finalizado
+        incidente.actualizarEstado();  // Ahora si pido actualizar el estado va a cambiar
+        incidente.dameEstado();         // con estado RESUELTO
+        incidente.actualizarEstado();   // mensaje de advertencia: no se puede volver a actualziar el estado porque ya está resuelto
+        incidente.dameFechaFinalizacion(); // ahora toma como fecha de finalización la real
 
     }
 }
