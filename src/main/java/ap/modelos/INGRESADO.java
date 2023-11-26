@@ -21,7 +21,7 @@ public class INGRESADO extends Estado{
 
         LocalDate fechaFinalizacionL = fechaCreacionL.plus(incidente.getTiempoResolucion()).plus(incidente.getTiempoColchon());
 
-        System.out.println(fechaFinalizacionL);
+        System.out.println("Posible fecha de Finalización: " + fechaFinalizacionL);
         //System.out.println(fechaFinalizacionL.format(dateTimeFormatter));
 
         return util.convertToDate(fechaFinalizacionL);
