@@ -76,6 +76,25 @@ public class TecnicoController {
         System.out.println("Técnico agregado con éxito.\n");
     }
 
+    public void agregarTecnicoConDatos(String nombreTecnico, String apellidoTecnico, String fechaNacTecnicoS) {
+
+        Util util = new Util();
+
+        Date fechaNacTecnico =  util.getSQLDate(fechaNacTecnicoS);
+
+        Tecnico tecnico = new Tecnico();
+
+        tecnico.setNombre(nombreTecnico);
+        tecnico.setApellido(apellidoTecnico);
+        tecnico.setFechaNacim(fechaNacTecnico);
+
+        cr.getEm().getTransaction().begin();
+        cr.insertar(tecnico);
+        cr.getEm().getTransaction().commit();
+
+        System.out.println("Técnico agregado con éxito.\n");
+    }
+
     public void actualizarTecnico(Tecnico tecnico) {
         cr.getEm().getTransaction().begin();
         cr.actualizar(tecnico);
