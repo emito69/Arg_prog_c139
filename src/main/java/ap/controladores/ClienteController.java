@@ -84,6 +84,27 @@ public class ClienteController {
         System.out.println("Cliente agregado con éxito.\n");
     }
 
+    public void agregarClienteConDatos(String nombreCliente, String apellidoCliente, String cuitCliente, String razonSocialtCliente,  String fechaNacClienteS ) {
+
+        Util util = new Util();
+
+        Date fechaNacCliente =  util.getSQLDate(fechaNacClienteS);
+
+        Cliente cliente = new Cliente();
+
+        cliente.setNombre(nombreCliente);
+        cliente.setApellido(apellidoCliente);
+        cliente.setCuit(cuitCliente);
+        cliente.setRazon_social(razonSocialtCliente);
+        cliente.setFechaNacim(fechaNacCliente);
+
+        cr.getEm().getTransaction().begin();
+        cr.insertar(cliente);
+        cr.getEm().getTransaction().commit();
+
+        System.out.println("Cliente agregado con éxito.\n");
+    }
+
     public void actualizarCliente(Cliente cliente) {
         cr.getEm().getTransaction().begin();
         cr.actualizar(cliente);
