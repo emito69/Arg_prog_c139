@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 
 public class Sistema {
@@ -103,10 +104,10 @@ public class Sistema {
 
         // CLIENTE 1/2/3/4, servicioxx
         //cc.agregarCliente(scanner);
-        cc.agregarClienteConDatos("Emi", "Alva1", "111", "111", "05/01/1981"); // id:1
-        cc.agregarClienteConDatos("Emi2", "Alva2", "222", "222", "05/02/1982"); // id:2
-        cc.agregarClienteConDatos("Emi3", "Alva3", "333", "444", "05/03/1983"); // id:3
-        cc.agregarClienteConDatos("Emi4", "Alva4", "444", "444", "05/04/1984"); // id:4
+        cc.agregarClienteConDatos("Ciente1", "Alva1", "111", "111", "05/01/1981"); // id:1
+        cc.agregarClienteConDatos("Ciente2", "Alva2", "222", "222", "05/02/1982"); // id:2
+        cc.agregarClienteConDatos("Ciente3", "Alva3", "333", "444", "05/03/1983"); // id:3
+        cc.agregarClienteConDatos("Ciente4", "Alva4", "444", "444", "05/04/1984"); // id:4
 
         Cliente cliente = cc.buscarClienteId(1);
         cliente.getServicios().add(servicio1);
@@ -138,10 +139,10 @@ public class Sistema {
         // TECNICO 1/2/3/4, servicioxx
         //tc.agregarTecnico(scanner);
 
-        tc.agregarTecnicoConDatos("Nadu1", "Sando1", "04/05/1995");
-        tc.agregarTecnicoConDatos("Nadu2", "Sando2", "04/06/1996");
-        tc.agregarTecnicoConDatos("Nadu3", "Sando3", "04/07/1997");
-        tc.agregarTecnicoConDatos("Nadu4", "Sando4", "04/08/1998");
+        tc.agregarTecnicoConDatos("Tecnico1", "Sando1", "04/05/1995");
+        tc.agregarTecnicoConDatos("Tecnico2", "Sando2", "04/06/1996");
+        tc.agregarTecnicoConDatos("Tecnico3", "Sando3", "04/07/1997");
+        tc.agregarTecnicoConDatos("Tecnico4", "Sando4", "04/08/1998");
 
         Tecnico tecnico = tc.buscarTecnicoId(5);
         tecnico.getEspecialidades().add(especialidad1);
@@ -163,32 +164,39 @@ public class Sistema {
         tecnico.getEspecialidades().add(especialidad4);
         tc.actualizarTecnico(tecnico);   // Especialidad 3 y 4
 
-        tecnico = tc.buscarTecnicoId(8);
+        //tecnico = tc.buscarTecnicoId(8);
 
-        tecnico.getEspecialidades().forEach(
-                especialidad -> System.out.println(especialidad));
-        System.out.println();
+        //tecnico.getEspecialidades().forEach(
+        //        especialidad -> System.out.println(especialidad));
+        //System.out.println();
 
         // INCIDENTE 1, cliente1, servicio1
 
         ic.agregarIncidente(cc.buscarClienteId(4), cc.buscarClienteId(4).getServicios().get(1), prc.buscarProblemaId(3));
 
-        Incidente incidente = ic.buscarIncidenteId(1);
+        Incidente incidente = ic.buscarIncidenteId(1);   // obtego el incidente
 
-        incidente.setTecnico(tecnico); // es el del id: 8
+        System.out.println("Servicio por el que buscamos técnico: " + cc.buscarClienteId(4).getServicios().get(1));  //servicio3
+        ArrayList<Tecnico> listaTecnicos = (ArrayList<Tecnico>) tc.dameListaTecnicos();
+        System.out.println("Lista de Técnicos disponibles: " + listaTecnicos);
+        Set<Integer> setIdTecnicosAsignables = incidente.getServicio().dameListaTecnicosPosibles(listaTecnicos); // obtego los Técnicos que pueden serolver el servicio del incidente
+        System.out.println("Lista de Técnicos asignables: " + setIdTecnicosAsignables);
+        int id_tecnido_elegido = incidente.getServicio().dameUnTecnicoAlAzarDeUnaLista(setIdTecnicosAsignables); // elegimos un técnico al azar de los Asignables
+
+        incidente.setTecnico(tc.buscarTecnicoId(id_tecnido_elegido)); // asginamos un técnico al azar de los ASignables
 
         ic.actualizarIncidente(incidente);
         ic.mostrarIncidentes();
 
-        incidente.dameFechaFinalizacion(); // la fecah de finalización tentativa es la de inicio + tiempo + colchon
+        incidente.dameFechaFinalizacion(); // la fecha de finalización tentativa es la de inicio + tiempo + colchon
         incidente.setTiempoColchon(10);
-        incidente.dameFechaFinalizacion();  // la fecah de finalización tentativa es la de inicio + tiempo + colchon
+        incidente.dameFechaFinalizacion();  // la fecha de finalización tentativa es la de inicio + tiempo + colchon
 
         incidente.dameEstado();     // con estado inicial INGRESADO
         incidente.setFinalizado();  // El Técnico indica que ya resolvió el Incidente, le pide fecha real de finalizado
         incidente.actualizarEstado();  // Ahora si pido actualizar el estado va a cambiar
         incidente.dameEstado();         // con estado RESUELTO
-        incidente.actualizarEstado();   // mensaje de advertencia: no se puede volver a actualziar el estado porque ya está resuelto
+        incidente.actualizarEstado();   // mensaje de advertencia: no se puede volver a actualizar el estado porque ya está resuelto
         incidente.dameFechaFinalizacion(); // ahora toma como fecha de finalización la real
 
     }

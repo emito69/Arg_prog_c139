@@ -5,6 +5,7 @@ import ap.modelos.Tecnico;
 import ap.repositorios.TecnicoRepository;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class TecnicoController {
@@ -106,6 +107,10 @@ public class TecnicoController {
         cr.buscarTecnicos().forEach(
                 tecnico -> System.out.println(tecnico));
         System.out.println();
+    }
+
+    public List<Tecnico> dameListaTecnicos() {
+        return cr.buscarTecnicos();
     }
 
     public Tecnico buscarTecnicoId(int nroTecnico) {
